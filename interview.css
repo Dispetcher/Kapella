@@ -1,0 +1,630 @@
+
+A.diplom:link {  text-decoration: none; color: #000000 }
+A.diplom:visited {  text-decoration: none; color: #000000}
+A.diplom:active {  text-decoration: none; color: #000000}
+A.diplom:hover {  text-decoration: underline; color: blue}
+
+.shortTitle A:link {  text-decoration: none; color: #000000 }
+.shortTitle A:visited {  text-decoration: none; color: #000000}
+.shortTitle A:active {  text-decoration: none; color: #000000}
+.shortTitle A:hover {  text-decoration: underline; color: blue}
+
+body {
+    background: white;
+    margin: 0 0 0 0;
+    text-align:center;
+    font-size: 16px;
+}
+td {
+    font-size: 16px;
+}
+ul {
+	margin-top: 0;
+	margin-bottom: 0
+}
+
+.fototree {
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 1.3; 
+}
+SPAN.TreeviewSpanArea A {
+	font-size: 10pt; 
+	font-family: verdana,helvetica; 
+	text-decoration: none;
+	color: black
+}
+SPAN.TreeviewSpanArea A:visited { color: black; }
+SPAN.TreeviewSpanArea A:active { color: red; }
+SPAN.TreeviewSpanArea A:hover { color: blue; }
+
+p {
+	text-align: left;
+	text-indent: 3ex;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 16px;
+	line-height: 20px;
+}
+p .ref { font-size: 13px;
+}
+p.first {
+	text-indent: 0ex;
+}
+h1 {
+    font-size: 24px;
+}
+h1.nekrolog {
+	text-align: center;
+	border: solid black 2px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.nekrolog  .fotoImg img {
+	padding: 2px;
+	background-color: black;
+}
+h2 {
+    font-size: 20px;
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+h3 {
+    font-size: 18px;
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+h4 {
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+a:visited {
+    color:4400FF;
+}
+p.question {
+	font-weight: bold;
+	margin-top: 12px;
+	margin-bottom: 6px
+}
+p.intro {
+	text-indent: 0;
+	font-size: 90%;
+    font-weight: bold;
+	color: #111111;	
+}
+p.indent {
+	text-indent: 3ex;
+}
+
+.name {
+	font-weight: bold;
+}
+
+A.name:link {  text-decoration: none; color: #000066 }
+A.name:visited {  text-decoration: none; color: #220066}
+A.name:active {  text-decoration: none; color: #660000}
+A.name:hover {  text-decoration: underline; color: #000066}
+
+.name_ex {
+	font-weight: bold;
+	color: #555555;
+}
+
+A.name_ex:link {  text-decoration: none; color: #555555 }
+A.name_ex:visited {  text-decoration: none; color: #555555}
+A.name_ex:active {  text-decoration: none; color: #555555}
+A.name_ex:hover {  text-decoration: underline; color: #555555}
+
+.author {
+	font-weight: bold;
+}
+
+.ann {
+	font-size: 80%;
+}
+
+.title {
+	font-style: italic;
+}
+.link .title {
+	font-style: normal;
+}
+
+p.lyrics {
+	text-align: left;
+	text-indent: 0;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	font-size: 14px;
+}
+
+p.lyrics_c {
+	text-align: center;
+	text-indent: 0;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	font-size: 14px;
+}
+
+p.signature {
+	margin-top: 6px;
+	margin-bottom: 6px;
+	text-align: right;
+	font-style: italic;
+}
+
+.ill {
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px	
+}
+
+.ill_r {
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	text-align: center;
+	position: relative;
+	float: right;
+	margin-left: 10px;
+	margin-right: 2px;
+}
+
+.ill_l {
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	text-align: center;
+	position: relative;
+	float: left;
+	margin-right: 10px;
+}
+
+div.ill_l, div.ill_r {
+	margin-top: 5px; background:white;
+}
+.ill_l img, .ill_r img {
+    background-color: gray;
+    padding: 1px;
+}
+img.row {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.location {
+    margin-top: 1px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+.forumMenu {
+    margin-top: 1px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+.main {
+    margin-top:0;
+    margin-bottom:0px;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.epig p {
+    margin-left: 359;
+	font-size: 14px;
+}
+
+p.src {
+    text-align: center;
+	text-indent: 0;
+    font-size:12px;
+}
+
+.vrezka {
+    text-align: center;
+	text-indent: 0;
+    font-weight: normal;
+    font-size:20px;
+}
+
+.footer {
+    margin-top: 1px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+.copyright {
+    margin-top: 1px;
+    margin-left: 10px;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+.counter {
+    margin-top: 1px;
+    margin-right: 10px;
+    text-align: right;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+.visitor_info {
+    margin-top: 1px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+}
+
+.short {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 75%;
+	line-height: 120%; 
+}
+.shortTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+	font-weight: bold;
+}
+.shortDate {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+.ftn {
+    font-size: 14px;
+	line-height: 15px;
+    margin-bottom: 10px;
+}
+.note {
+    font-size: 14px;
+}
+.subhead {
+    font-size: 75%;
+    font-weight: normal;   
+}
+.biblio li {
+    margin-bottom: 10px;
+}
+.sep {
+    text-align:center;
+    margin-top: 12px;
+    text-indent: 0;
+}
+.rodina {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+.repertoir .author {
+    text-indent: 0;
+    margin-top: 6px;
+    font-weight: bold;
+}
+.repertoir .title {
+    text-indent: 0;
+    margin-left: 64px;
+    font-style: normal;
+}
+
+.event {
+    margin-top: 6px;
+    margin-left: 5ex;
+    text-indent: -5ex;
+}
+.eventLink {
+	margin-top: 4px;
+	margin-bottom: 4px;
+    margin-left: 3ex;
+	text-indent: -3ex;
+}
+.event A:link {  text-decoration: none; color: #000000 }
+.event A:visited {  text-decoration: none; color: #000000}
+.event A:active {  text-decoration: none; color: #000000}
+.event A:hover {  text-decoration: underline; color: blue}
+
+.event .date {
+    font-weight: bold;
+}
+.null {
+    text-align: left;
+    text-indent: 0;
+}
+
+.shadowed { font-size: 8pt; background: #EEEEFF; }
+.shadow { background: #666666; }
+.meta { font-size: 8pt; }
+.index { font-size: 8pt; }
+.caption, .index { 
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black; 
+    background: white;
+}
+.comments { font-size: 8pt; }
+.personalia li {
+    text-align: left;
+    margin-bottom: 0;
+}
+.personalia li .activity {
+	font-size: 80%;
+}
+.personalia p {
+    margin-left: 3ex;
+    text-indent: -3ex;
+    text-align: left;
+    margin-top: 10px;
+}
+.personalia p .activity {
+	font-size: 80%;
+}
+
+.main > .fotoImg, .ill > .fotoImg {
+	margin-left : -10px;
+	margin-right: -10px;
+}
+.foto .src {
+	margin-top: 6px;
+	text-indent: 0;
+    font-size:80%;
+}
+
+.foto .fotoId {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:10px;
+	color: #999999;
+}
+.foto .fotoId a:not(:hover) {
+	color: inherit;
+	text-decoration: inherit;
+}
+.foto {
+    text-align: left;
+	margin-top: 10px;
+	text-indent: 0;
+}
+.ill .foto {
+	text-align: center;
+}
+.ill .foto .src {
+	font-size: 90%;
+}
+.srcContainer {
+	display: inline-block;
+	position: relative;
+}
+.fotoImg .srcContainer .src {
+	transform: rotate(270deg);
+	transform-origin: left bottom;
+	font-size: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	left: 11px;
+	bottom: 0;
+	position: absolute;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.ill_l .foto, .ill_r .foto {
+    margin-bottom: 10px;
+}
+.peopleRow {
+    margin-left: 3ex;
+    text-indent: -2ex;
+}
+.noTitle .peopleRow:first-child {
+	display: inline;
+	margin-left: 0;
+}
+.range {
+    font-size: 10pt;
+    font-family: Arial, Helvetica, sans-serif;
+	text-indent: 0;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.loose {
+	letter-spacing: 4px;
+}
+.cipher {
+    font-family: Courier New, Courier;
+    font-weight: bold;
+	text-indent: 0;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.arrows {
+    font-size: 10pt;
+    font-family: Arial, Helvetica, sans-serif;
+	margin-top: 10px;
+	text-indent: 0;
+	text-align: center;
+}
+p.see {
+	margin-top: 10px;
+	text-indent: 0;
+	text-align: left;
+}
+.list p {
+	text-align: left;
+	text-indent: -2ex;
+	margin-left: 3ex;
+	margin-top: 0;
+	margin-bottom: 0;
+    font-size: 16px;
+}
+
+.course_detail {
+	font-size: 11px;
+}
+pre.log {
+	text-align:left;
+	font-size: 11px;
+}
+.commercial {
+    font-family: Arial, Helvetica, sans-serif;
+	margin-top: 10px;
+	font-size: 9px;
+	text-align: justify;
+}
+
+input.user-name {
+	background: url(/img/bird.gif) no-repeat; 
+	background-color: #fff; 
+	background-position: 0px 1px; 
+	padding-left: 18px; 
+	color: #00C; 
+	font-weight: bold; 
+}
+
+.col-1 {
+	width:253px;
+}
+.traur {
+	border: 2px black solid;
+	padding: 1px;
+	margin: 1px;
+}
+.long-quote {
+	border: 1px solid white;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: #EEBB88;
+}
+.long-quote .src {
+	margin-top: 5px;
+	text-align: right;
+}
+.long-quote h3:first-child {
+	margin-top: 0;
+}
+p.clear {
+	clear: both;
+}
+.nameList div {
+	margin-left: 50px;
+}
+.nameList div.course {
+	float: left;
+	margin-left: 0;
+}
+.soonAfisha {
+	margin-bottom: 10px;
+  -webkit-transition: height 3s; 
+  -moz-transition: height 3s; 
+  -ms-transition: height 3s; 
+  -o-transition: height 3s; 
+  transition: height 3s;
+  overflow: hidden;
+}
+.soonAfisha a {
+	position: relative;
+}
+.soonAfisha a #afisha-fg {
+	position: absolute;
+	top: 0;
+	z-index: 20;
+}
+.ill_l .foto, .ill_r .foto {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.cd ol li {
+	margin-bottom: 8px;
+}
+.cd .smaller {
+    font-size: 80%;
+    color: #555555;
+    letter-spacing: 1px;
+}
+.parallel {
+	font-size: 80%;
+	font-style: italic;
+	text-transform: lowercase;
+}
+a.archive-code {
+    display: inline-block;
+}
+a.archive-code:first-letter {
+    text-transform: capitalize;
+}
+a.archive-code:not(:hover) {
+    text-decoration: none;
+    color: black;
+}
+.ann-label {
+    color: white;
+    background-color: #660000;
+    float: right;
+    font-weight: bold;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
+    padding: 0 2px;
+    margin: 0 0 4px 4px;
+}
+.ebay-logo {
+    background: rgba(0, 0, 0, 0) url("/img/ebay.png") no-repeat scroll 0 -82px;
+    height: 24px;
+    margin-top: -3px;
+    width: 50px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.deleted {
+    text-decoration: line-through;
+}
+a.name.deleted {
+    text-decoration: line-through;
+}
+a.name.deleted:hover {
+    text-decoration: underline;
+}
+.btn_profile{
+	text-align: left;
+	margin-top: 10px;
+	padding: 4px;
+}
+.btn_profile a{
+	text-decoration: none;
+	color:#000;
+	font-weight: 600;
+}
+.form{
+	margin: auto;
+	}
+.form caption{
+	padding: 6px;
+	font-size: 18px;
+	font-weight: 600;
+	border-bottom: 2px solid #222;
+}
+.cell_name, .cell_val, .cell_title{
+	border-bottom: 1px solid #888;
+	padding: 5px;
+	font-size: 14px;
+}
+.cell_val input, .cell_val textarea, .cell_val select{
+	padding:4px;
+	min-width: 200px;
+}
+.cell_val textarea{
+	font-size: 12px;
+}
+.cell_title{
+	text-align: center;
+	font-size: 16px;
+	font-weight: 600;
+}
+.profile_submit{
+	text-align: center;
+	margin-top:10px;
+}
+.profile_submit input{
+	font-size: 16px;
+	padding: 4px;
+	cursor: pointer;
+}
