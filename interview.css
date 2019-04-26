@@ -628,3 +628,6 @@ a.name.deleted:hover {
 	padding: 4px;
 	cursor: pointer;
 }
+.add_education{
+	display: none;
+}

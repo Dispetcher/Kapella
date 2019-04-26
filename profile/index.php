@@ -1,18 +1,58 @@
 <?php
+$root=$_SERVER["DOCUMENT_ROOT"];
 
+include_once "$root/log/db.php";
 include_once "../header.php";
-global $f_name, $m_name, $l_name, $birth_date, $year_grad;
+
+global $f_name, $m_name, $l_name, $birth_date, $year_grad, $education_level, $education_degree, $education_speciality, $education_degree_1, $education_speciality_1, $location, $phone, $email, $www, $achivements;
+
 $id = $_GET["id"];
 
+getData($id);
 
 
-printProfile($f_name, $l_name, $m_name);
+/*Check for data presentation in the new table (profile). If not, get previous existing data*/
+function getData($id){
+	
 
+	/*Get data from old tables*/
+	$row = getRow("SELECT * FROM person where id=$id");
+	if($row){
+		$f_name = $row->fname;
+		$m_name = $row->mname;
+		$l_name = $row->lname;
+		$sex = $row->sex;
+		$birth_date = date('Y-m-d', strtotime($row->byear.'-'.$row->bmonth.'-'.$row->bdate));
+	}
+
+	$row = getRow("SELECT * FROM person2course where id=$id");
+	if($row){
+		$year_grad = $row->course;
+	}
+
+	$rows = mysql_query("SELECT * FROM contacts4person where id=$id");
+	$num_rows = mysql_num_rows($rows);
+	if($num_rows > 0){
+		for ( $i=0; $i < $num_rows; $i++ ) {
+	 		$row = mysql_getRow( $rows, $i );
+	 		echo $row->type;
+			if($row->type == "tel"){
+				if(!$phone){
+					$phone = $row->value;
+				}
+			}
+		}
+	}
+	printProfile($f_name, $l_name, $m_name);
+
+}
+
+/*Print the profile for the person */
 function printProfile($f_name, $l_name, $m_name){
 	$form = "
-		<form action='/action.php' method='post'>
-<table class='form'>
-	<caption>Анкета</caption>
+		<form action='/profile/action.php' method='post'>
+	<table class='form'>
+		<caption>Анкета</caption>
 	<tbody>
 	<tr class='row'>
 		<td class='cell_name'>Фамилия</td>
@@ -53,10 +93,10 @@ function printProfile($f_name, $l_name, $m_name){
 
 	<tr class='row'>
 		<td class='cell_name'>Образование (тип)</td>
-		<td class='cell_val'><input name='education' type='text' value='$education'></td>
+		<td class='cell_val'><input name='education_level' type='text' value='$education_level'></td>
 	</tr>
 	<tr class='row'>
-		<td class='cell_name'>Высшее образование</td>
+		<td class='cell_name'>Высшее образование (Уч. заведение) </td>
 		<td class='cell_val'><input name='education_degree' type='text' value='$education_degree'></td>
 	</tr>
 	<tr class='row'>
@@ -64,12 +104,16 @@ function printProfile($f_name, $l_name, $m_name){
 		<td class='cell_val'><input name='education_speciality' type='text' value='$education_speciality'></td>
 	</tr>
 
+	<tr class='row'>
+		<td class='add'><input id='add' type='button' value='Добавить высшее образование'></td>
+	</tr>
+
 	<tr class='row add_education'>
-		<td class='cell_name'>Высшее образование (1)</td>
+		<td class='cell_name'>Высшее образование (доп) (Учеб. заведение) </td>
 		<td class='cell_val'><input name='education_degree_1' type='text' value='$education_degree_1'></td>
 	</tr>
 	<tr class='row add_education'>
-		<td class='cell_name'>Высшее образование (1) (Специальность) </td>
+		<td class='cell_name'>Высшее образование (доп) (Специальность) </td>
 		<td class='cell_val'><input name='education_speciality_1' type='text' value='$education_speciality_1'></td>
 	</tr>
 	
@@ -165,6 +209,8 @@ function printProfile($f_name, $l_name, $m_name){
 	echo $form;
 
 }
+
+echo "<script src='/profile/profile.js'></script>";
 
 include_once "../footer.php";
 

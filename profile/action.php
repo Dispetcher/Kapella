@@ -1,3 +1,3 @@
 <?php
-	echo $_POST["f_name"];
+	echo $_POST["birth_date"];
 ?>
