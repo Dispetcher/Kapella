@@ -18,16 +18,32 @@ function getData($id){
 	/*Get data from old tables*/
 	$row = getRow("SELECT * FROM person where id=$id");
 	if($row){
-		$f_name = $row->fname;
-		$m_name = $row->mname;
-		$l_name = $row->lname;
-		$sex = $row->sex;
+		$f_name = trim($row->fname);
+		$m_name = trim($row->mname);
+		$l_name = trim($row->lname);
+		$sex_tab = $row->sex;
+		if($sex_tab == "M"){
+			$sexM = "selected";
+			$sexF = "";
+		}else if($sex_tab == "F"){
+			$sexM = "";
+			$sexF = "selected";
+		}
 		$birth_date = date('Y-m-d', strtotime($row->byear.'-'.$row->bmonth.'-'.$row->bdate));
 	}
 
-	$row = getRow("SELECT * FROM person2course where id=$id");
-	if($row){
-		$year_grad = $row->course;
+	$rows = mysql_query("SELECT * FROM person2course where person=$id");
+	$num_rows = mysql_num_rows($rows);
+	if($num_rows > 0){
+		for ( $i=0; $i < $num_rows; $i++ ) {
+	 		$row = mysql_getRow( $rows, $i );
+	 		if(!$year_grad){
+	 			$year_grad = $row->course;
+	 		}else if($year_grad && $row->course < $year_grad){
+				$year_grad = $row->course;
+			}
+
+		}	
 	}
 
 	$rows = mysql_query("SELECT * FROM contacts4person where id=$id");
@@ -35,20 +51,31 @@ function getData($id){
 	if($num_rows > 0){
 		for ( $i=0; $i < $num_rows; $i++ ) {
 	 		$row = mysql_getRow( $rows, $i );
-	 		echo $row->type;
 			if($row->type == "tel"){
 				if(!$phone){
 					$phone = $row->value;
 				}
+			}else if($row->type == "addr"){
+				$location = $row->value;
+			}else if($row->type == "e-mail"){
+				$email = $row->value;
+			}else if($row->type == "vk"){
+				$www .= "VK_id-".$row->value."; ";
+			}else if($row->type == "lj"){
+				$www .= "LJ_id-".$row->value."; ";
+			}else if($row->type == "fb"){
+				$www .= "Fb_id-".$row->value."; ";
+			}else if($row->type == "ok"){
+				$www .= "Ok_id-".$row->value."; ";
 			}
 		}
 	}
-	printProfile($f_name, $l_name, $m_name);
+	printProfile($f_name, $l_name, $m_name, $sexM, $sexF, $birth_date, $year_grad, $education_level, $education_degree, $education_speciality, $education_degree_1, $education_speciality_1, $location, $phone, $email, $www, $achivements);
 
 }
 
 /*Print the profile for the person */
-function printProfile($f_name, $l_name, $m_name){
+function printProfile($f_name, $l_name, $m_name, $sexM, $sexF, $birth_date, $year_grad, $education_level, $education_degree, $education_speciality, $education_degree_1, $education_speciality_1, $location, $phone, $email, $www, $occupation, $marital_status, $children, $job, $job_www, $achivements, $events_yes, $events_no, $events_guest_yes, $events_guest_no, $events_participant_yes, $events_participant_no){
 	$form = "
 		<form action='/profile/action.php' method='post'>
 	<table class='form'>
@@ -56,11 +83,11 @@ function printProfile($f_name, $l_name, $m_name){
 	<tbody>
 	<tr class='row'>
 		<td class='cell_name'>Фамилия</td>
-		<td class='cell_val'><input name='f_name' type='text' value='$f_name'></td>
+		<td class='cell_val'><input name='l_name' type='text' value='$l_name'></td>
 	</tr>
 	<tr class='row'>
 		<td class='cell_name'>Имя</td>
-		<td class='cell_val'><input name='l_name' type='text' value='$l_name'></td>
+		<td class='cell_val'><input name='f_name' type='text' value='$f_name'></td>
 	</tr>
 	<tr class='row'>
 		<td class='cell_name'>Отчество</td>
@@ -76,8 +103,8 @@ function printProfile($f_name, $l_name, $m_name){
 		<td class='cell_name'>Пол</td>
 		<td class='cell_val'>
 		<select name='sex'>
-			<option value='male'>Мужской</option>
-			<option value='female'>Женский</option>
+			<option value='male' $sexM >Мужской</option>
+			<option value='female' $sexF >Женский</option>
 		</select>
 		</td>
 	</tr>
@@ -123,7 +150,7 @@ function printProfile($f_name, $l_name, $m_name){
 
 	<tr class='row'>
 		<td class='cell_name'>Местонахождение (страна, город) </td>
-		<td class='cell_val'><input name='location' type='text' value='$location'></td>
+		<td class='cell_val'><textarea name='location' type='text'>$location</textarea></td>
 	</tr>
 	<tr class='row'>
 		<td class='cell_name'>Контактный телефон </td>
@@ -135,7 +162,7 @@ function printProfile($f_name, $l_name, $m_name){
 	</tr>
 	<tr class='row'>
 		<td class='cell_name'>WWW / Соц.сети </td>
-		<td class='cell_val'><input name='www' type='text' value='$www'></td>
+		<td class='cell_val'><textarea name='www' type='text'>$www</textarea></td>
 	</tr>
 	
 	<tr class='row'>
@@ -144,7 +171,7 @@ function printProfile($f_name, $l_name, $m_name){
 
 	<tr class='row'>
 		<td class='cell_name'>Род занятий </td>
-		<td class='cell_val'><input name='occupation' type='text' value='$occupation'></td>
+		<td class='cell_val'><textarea name='occupation' type='text'>$occupation</textarea></td>
 	</tr>
 	<tr class='row'>
 		<td class='cell_name'>Семейное положение </td>
@@ -157,24 +184,24 @@ function printProfile($f_name, $l_name, $m_name){
 
 	<tr class='row'>
 		<td class='cell_name'>Место работы (Наименование) </td>
-		<td class='cell_val'><input name='job' type='text' value='$job'></td>
+		<td class='cell_val'><textarea name='job' type='text'>$job</textarea></td>
 	</tr>
 	<tr class='row'>
 		<td class='cell_name'>Место работы (WWW) </td>
-		<td class='cell_val'><input name='job_www' type='text' value='$job_www'></td>
+		<td class='cell_val'><textarea name='job_www' type='text'>$job_www</textarea></td>
 	</tr>
 
 	<tr class='row'>
 		<td class='cell_name'>Достижения </td>
-		<td class='cell_val'><textarea name='achivements' type='text' value='$achivements'></textarea></td>
+		<td class='cell_val'><textarea name='achivements' type='text'>$achivements</textarea></td>
 	</tr>
 
 	<tr class='row'>
 		<td class='cell_name'>Сможете ли вы принять участие в мероприятиях? </td>
 		<td class='cell_val'>
 			<select name='events'>
-				<option value='yes'>Да</option>
-				<option value='no'>Нет</option>
+				<option value='yes' $events_yes>Да</option>
+				<option value='no' $events_no>Нет</option>
 			</select>
 		</td>
 	</tr>
@@ -183,8 +210,8 @@ function printProfile($f_name, $l_name, $m_name){
 		<td class='cell_name'>В качестве гостя </td>
 		<td class='cell_val'>
 			<select name='events_guest'>
-				<option value='yes' selected >Да</option>
-				<option value='no'>Нет</option>
+				<option value='yes' $events_guest_yes>Да</option>
+				<option value='no' $events_guest_no>Нет</option>
 			</select>
 		</td>
 	</tr>
@@ -193,8 +220,8 @@ function printProfile($f_name, $l_name, $m_name){
 		<td class='cell_name'>В качестве исполнителя </td>
 		<td class='cell_val'>
 			<select name='events_participant'>
-				<option value='yes'>Да</option>
-				<option value='no' selected >Нет</option>
+				<option value='yes' $events_participant_yes>Да</option>
+				<option value='no' $events_participant_no>Нет</option>
 			</select>
 		</td>
 	</tr>
