@@ -4,8 +4,6 @@ $root=$_SERVER["DOCUMENT_ROOT"];
 include_once "$root/log/db.php";
 include_once "../header.php";
 
-global $f_name, $m_name, $l_name, $birth_date, $year_grad, $education_level, $education_degree, $education_speciality, $education_degree_1, $education_speciality_1, $location, $phone, $email, $www, $achivements;
-
 $id = $_GET["id"];
 
 getData($id);
@@ -13,74 +11,147 @@ getData($id);
 
 /*Check for data presentation in the new table (profile). If not, get previous existing data*/
 function getData($id){
-	
 
-	/*Get data from old tables*/
-	$row = getRow("SELECT * FROM person where id=$id");
+$events_no = "selected";
+$events_guest_no = "selected";
+$events_participant_no = "selected";
+
+	/*==========Get data from the new table==========*/
+	$row = getRow("SELECT * FROM profile where id=$id");
 	if($row){
-		$f_name = trim($row->fname);
-		$m_name = trim($row->mname);
-		$l_name = trim($row->lname);
+
+		$f_name = $row->f_name;
+		$m_name = $row->m_name;
+		$l_name = $row->l_name;
+		$birth_date = $row->birth_date;
+		
 		$sex_tab = $row->sex;
-		if($sex_tab == "M"){
+		if($sex_tab == "male"){
 			$sexM = "selected";
 			$sexF = "";
-		}else if($sex_tab == "F"){
+		}else if($sex_tab == "female"){
 			$sexM = "";
 			$sexF = "selected";
 		}
-		$birth_date = date('Y-m-d', strtotime($row->byear.'-'.$row->bmonth.'-'.$row->bdate));
-	}
 
-	$rows = mysql_query("SELECT * FROM person2course where person=$id");
-	$num_rows = mysql_num_rows($rows);
-	if($num_rows > 0){
-		for ( $i=0; $i < $num_rows; $i++ ) {
-	 		$row = mysql_getRow( $rows, $i );
-	 		if(!$year_grad){
-	 			$year_grad = $row->course;
-	 		}else if($year_grad && $row->course < $year_grad){
-				$year_grad = $row->course;
+		$year_grad = $row->year_grad;
+		$education_level = $row->education_level;
+		$education_degree = $row->education_degree;
+		$education_speciality = $row->education_speciality;
+		$education_degree_1 = $row->education_degree_1;
+		$education_speciality_1 = $row->education_speciality_1;
+		$location = $row->location;
+		$phone = $row->phone;
+		$email = $row->email;
+		$www = $row->www;
+		$occupation = $row->occupation;
+		$marital_status = $row->marital_status;
+		$children = $row->children;
+		$job = $row->job;
+		$job_www = $row->job_www;
+		$achivements = $row->achivements;
+		
+		$events = $row->events;
+		if($events == "yes"){
+			$events_yes = "selected";
+			$events_no = "";
+		}else{
+			$events_yes = "";
+			$events_no = "selected";
+		}
+
+		$events_guest = $row->events_guest;
+		if($events_guest == "yes"){
+			$events_guest_yes = "selected";
+			$events_guest_no = "";
+		}else{
+			$events_guest_yes = "";
+			$events_guest_no = "selected";
+		}
+
+		$events_participant = $row->events_participant;
+		if($events_participant == "yes"){
+			$events_participant_yes = "selected";
+			$events_participant_no = "";
+		}else{
+			$events_participant_yes = "";
+			$events_participant_no = "selected";
+		}
+	/*======== End of Get data from the new table ========*/
+
+	}else{
+
+	/***************** Get data from old tables ********************/
+		$row = getRow("SELECT * FROM person where id=$id");
+		if($row){
+			$f_name = trim($row->fname);
+			$m_name = trim($row->mname);
+			$l_name = trim($row->lname);
+			$sex_tab = $row->sex;
+			if($sex_tab == "M"){
+				$sexM = "selected";
+				$sexF = "";
+			}else if($sex_tab == "F"){
+				$sexM = "";
+				$sexF = "selected";
 			}
+			$birth_date = date('Y-m-d', strtotime($row->byear.'-'.$row->bmonth.'-'.$row->bdate));
+		}
 
-		}	
-	}
-
-	$rows = mysql_query("SELECT * FROM contacts4person where id=$id");
-	$num_rows = mysql_num_rows($rows);
-	if($num_rows > 0){
-		for ( $i=0; $i < $num_rows; $i++ ) {
-	 		$row = mysql_getRow( $rows, $i );
-			if($row->type == "tel"){
-				if(!$phone){
-					$phone = $row->value;
+		$rows = mysql_query("SELECT * FROM person2course where person=$id");
+		$num_rows = mysql_num_rows($rows);
+		if($num_rows > 0){
+			for ( $i=0; $i < $num_rows; $i++ ) {
+	 			$row = mysql_getRow( $rows, $i );
+	 			if(!$year_grad){
+	 				$year_grad = $row->course;
+	 			}else if($year_grad && $row->course < $year_grad){
+					$year_grad = $row->course;
 				}
-			}else if($row->type == "addr"){
-				$location = $row->value;
-			}else if($row->type == "e-mail"){
-				$email = $row->value;
-			}else if($row->type == "vk"){
-				$www .= "VK_id-".$row->value."; ";
-			}else if($row->type == "lj"){
-				$www .= "LJ_id-".$row->value."; ";
-			}else if($row->type == "fb"){
-				$www .= "Fb_id-".$row->value."; ";
-			}else if($row->type == "ok"){
-				$www .= "Ok_id-".$row->value."; ";
+			}	
+		}
+
+		$rows = mysql_query("SELECT * FROM contacts4person where id=$id");
+		$num_rows = mysql_num_rows($rows);
+		if($num_rows > 0){
+			for ( $i=0; $i < $num_rows; $i++ ) {
+	 			$row = mysql_getRow( $rows, $i );
+				if($row->type == "tel"){
+					if(!$phone){
+						$phone = $row->value;
+					}
+				}else if($row->type == "addr"){
+					$location = $row->value;
+				}else if($row->type == "e-mail"){
+					$email = $row->value;
+				}else if($row->type == "vk"){
+					$www .= "VK_id-".$row->value."; ";
+				}else if($row->type == "lj"){
+					$www .= "LJ_id-".$row->value."; ";
+				}else if($row->type == "fb"){
+					$www .= "Fb_id-".$row->value."; ";
+				}else if($row->type == "ok"){
+					$www .= "Ok_id-".$row->value."; ";
+				}
 			}
 		}
+	/********** End of Get data from old tables ***********/
 	}
-	printProfile($f_name, $l_name, $m_name, $sexM, $sexF, $birth_date, $year_grad, $education_level, $education_degree, $education_speciality, $education_degree_1, $education_speciality_1, $location, $phone, $email, $www, $achivements);
+
+	printProfile($id, $f_name, $l_name, $m_name, $sexM, $sexF, $birth_date, $year_grad, $education_level, $education_degree, $education_speciality, $education_degree_1, $education_speciality_1, $location, $phone, $email, $www, $occupation, $marital_status, $children, $job, $job_www, $achivements, $events_yes, $events_no, $events_guest_yes, $events_guest_no, $events_participant_yes, $events_participant_no);
 
 }
 
-/*Print the profile for the person */
-function printProfile($f_name, $l_name, $m_name, $sexM, $sexF, $birth_date, $year_grad, $education_level, $education_degree, $education_speciality, $education_degree_1, $education_speciality_1, $location, $phone, $email, $www, $occupation, $marital_status, $children, $job, $job_www, $achivements, $events_yes, $events_no, $events_guest_yes, $events_guest_no, $events_participant_yes, $events_participant_no){
+/******** Print the profile for the person ***********/
+function printProfile($id, $f_name, $l_name, $m_name, $sexM, $sexF, $birth_date, $year_grad, $education_level, $education_degree, $education_speciality, $education_degree_1, $education_speciality_1, $location, $phone, $email, $www, $occupation, $marital_status, $children, $job, $job_www, $achivements, $events_yes, $events_no, $events_guest_yes, $events_guest_no, $events_participant_yes, $events_participant_no){
 	$form = "
-		<form action='/profile/action.php' method='post'>
+		<form action='/profile/insert.php' method='post'>
 	<table class='form'>
 		<caption>Анкета</caption>
 	<tbody>
+	<tr class='row hide'>
+		<td class='cell_val'><input name='id' type='text' value='$id' readonly></td>
+	</tr>
 	<tr class='row'>
 		<td class='cell_name'>Фамилия</td>
 		<td class='cell_val'><input name='l_name' type='text' value='$l_name'></td>
@@ -221,7 +292,7 @@ function printProfile($f_name, $l_name, $m_name, $sexM, $sexF, $birth_date, $yea
 		<td class='cell_val'>
 			<select name='events_participant'>
 				<option value='yes' $events_participant_yes>Да</option>
-				<option value='no' $events_participant_no>Нет</option>
+				<option value='no' $events_participant_no selected>Нет</option>
 			</select>
 		</td>
 	</tr>
@@ -236,7 +307,7 @@ function printProfile($f_name, $l_name, $m_name, $sexM, $sexF, $birth_date, $yea
 	echo $form;
 
 }
-
+/******* End of Print the profile for the person *******/
 echo "<script src='/profile/profile.js'></script>";
 
 include_once "../footer.php";

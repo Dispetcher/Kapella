@@ -609,9 +609,9 @@ a.name.deleted:hover {
 }
 .cell_val input, .cell_val textarea, .cell_val select{
 	padding:4px;
-	min-width: 200px;
+	min-width: 220px;	
 }
-.cell_val textarea{
+.cell_val input, .cell_val textarea{
 	font-size: 12px;
 }
 .cell_title{
@@ -630,4 +630,12 @@ a.name.deleted:hover {
 }
 .add_education{
 	display: none;
+}
+.row.hide{
+	display: none;
+}
+.result_string{
+	margin: 10px auto;
+	font-size: 16px;
+	font-style: italic;
 }

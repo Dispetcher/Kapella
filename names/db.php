@@ -329,7 +329,7 @@ function printPersonalInfo( $personId ) {
 	printContactInfo( $personId );
 
 /*============= Fill profile ==================*/
-	if($user_rights >= USER_MODERATOR) {
+	if($user_rights <= USER_MODERATOR) {
 		$button_val = "<button class='btn_profile'><a href='/profile/?id=$personId'>Заполнить анкету</a></button>";			
 		echo $button_val;
 	}
